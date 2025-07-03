@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  osint-bot:
+    build: .
+    container_name: osint-bot
+    env_file:
+      - .env
+    volumes:
+      - ./reports:/app/reports
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    restart: unless-stopped
