@@ -25,6 +25,7 @@ It accepts input via text messages, images (OCR), or QR codes, and returns a det
   - IP geolocation (country, city, ISP)  
   - Port scanning (top 15 TCP/UDP ports using Nmap)  
   - Blacklist status (e.g., VirusTotal, AbuseIPDB)  
+  - Wayback Machine Snapshot
 - Generates an HTML report and returns it to the user
 - Rejects unsupported content types (documents, audio, stickers, etc.)
 - Includes error handling for API failures and invalid input
@@ -52,9 +53,10 @@ It accepts input via text messages, images (OCR), or QR codes, and returns a det
 - pytesseract (OCR)
 - pyzbar (QR decoding)
 - socket, whois, requests
-- Nmap (port scanning)
+- Nmap (port scanning)-15 most common for speed improvment
 - python-dotenv (.env management)
 - Docker & Docker Compose
+- iframe
 
 ---
 

@@ -1,16 +1,17 @@
 import os
 from datetime import datetime
+from utils.Validators import is_valid_domain
 
 def generate_html_report(entity: str, results: dict, output_dir: str = "reports") -> str:
     # Create the reports directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
 
-    # Create a unique filename using the entity and timestamp
+    # Generate a timestamped filename based on the entity
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"{entity.replace('.', '_')}_{timestamp}.html"
     filepath = os.path.join(output_dir, filename)
 
-    # Start building the HTML content with basic styling
+    # Start building the HTML content with basic styles
     html_content = f"""
     <html>
     <head>
@@ -61,32 +62,46 @@ def generate_html_report(entity: str, results: dict, output_dir: str = "reports"
         <hr>
     """
 
-    # Iterate through each section in the results dictionary
+    # Iterate through each intelligence section (e.g., WHOIS, Geolocation, etc.)
     for section, data in results.items():
         html_content += f'<div class="section"><h3>{section}</h3>'
 
-        # If the section is a nested dictionary (e.g. VirusTotal)
         if isinstance(data, dict):
+            # For nested data, display each key-value pair
             for sub_key, sub_value in data.items():
                 html_content += f'<h4>{sub_key}</h4>'
-                
-                # Handle list values (e.g. subdomains list)
                 if isinstance(sub_value, list):
+                    # Display list values (e.g. subdomains) in <pre> block
                     html_content += "<pre>" + "\n".join(sub_value) + "</pre>"
                 else:
                     html_content += f"<pre>{sub_value}</pre>"
         else:
-            # For simple string/int/float values
+            # Display simple values (string, number, etc.)
             html_content += f"<pre>{data}</pre>"
 
         html_content += '</div>'
 
-    # Close the HTML document
+    # Embed Wayback Machine iframe only if the entity is a valid domain
+    if is_valid_domain(entity):
+        clean_entity = entity.strip().lower()
+        html_content += f"""
+        <div class="section">
+            <h3>Wayback Machine Snapshot</h3>
+            <iframe 
+                src="https://web.archive.org/web/*/{clean_entity}"
+                width="100%" height="500px" 
+                style="border:1px solid #ccc">
+            </iframe>
+            <p><small>View historical versions of this site using the Wayback Machine.</small></p>
+        </div>
+        """
+
+    # Finalize the HTML
     html_content += "</body></html>"
 
-    # Write the HTML to file
+    # Write the report to a file
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(html_content)
 
-    # Return the path to the generated report
+    # Return the full path to the generated report
     return filepath
