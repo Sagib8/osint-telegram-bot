@@ -60,7 +60,7 @@ To run this project, you need:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/osint-telegram-bot.git
+git clone https://github.com/Sagib8/osint-telegram-bot.git
 cd osint-telegram-bot
 ```
 
@@ -77,6 +77,17 @@ ABUSEIPDB_API_KEY=your_abuseipdb_api_key
 ```bash
 docker-compose up --build
 ```
+
+## Getting Your Telegram Token
+
+To run the bot, you’ll need to create a bot using Telegram’s @BotFather:
+	1.	Open Telegram and search for @BotFather
+	2.	Start a conversation and send the command /newbot
+	3.	Follow the prompts:
+	•	Choose a name (e.g., OSINT Bot)
+	•	Choose a unique username (e.g., osintbot_xyz)
+	4.	BotFather will give you a token – copy it.
+	5.	Paste it into your .env file 
 
 ## Report Output
 
