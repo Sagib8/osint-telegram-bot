@@ -1,5 +1,5 @@
 # OSINT Telegram Bot – IP/Domain Intelligence
-
+![Bot Screenshot](screenshot.png)
 ## Overview
 
 This Telegram bot performs OSINT (Open Source Intelligence) analysis on IP addresses and domain names.  
