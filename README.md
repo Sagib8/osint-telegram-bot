@@ -16,7 +16,7 @@ It accepts input via text messages, images (OCR), or QR codes, and returns a det
 
 - Supports:
   -  Plain text input (IP address or domain name)  
-  -  Images containing IP/domain (via OCR)  
+  -  Images containing multiple IP/domains (via OCR)  
   -  QR codes containing IP or domain  
 - Automatically resolves domain names to IP addresses
 - Input validation using regular expressions
