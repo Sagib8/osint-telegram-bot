@@ -1,4 +1,5 @@
 # OSINT Telegram Bot – IP/Domain Intelligence
+## Screenshot
 ![Bot Screenshot](screenshot.png)
 ## Overview
 
